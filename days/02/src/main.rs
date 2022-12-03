@@ -70,7 +70,7 @@ impl Option {
             };
         }
 
-        return self.clone()
+        self.clone()
     }
 
     fn beats(&self, opponent: &Option) -> Outcome {
@@ -119,7 +119,7 @@ fn parse(strategy: &str, rigged: bool) -> Vec<Round> {
     let mut rounds = vec![];
     for line in strategy.lines().filter(|line| !line.is_empty()) {
         let round = {
-            let mut opts = line.split(" ");
+            let mut opts = line.split(' ');
             let player_1 = Option::from_expected(opts.next().unwrap());
             let player_2 = if rigged {
                 player_1.outcome_needs(&Outcome::from_strategy(opts.next().unwrap()))
@@ -127,10 +127,7 @@ fn parse(strategy: &str, rigged: bool) -> Vec<Round> {
                 Option::from_strategy(opts.next().unwrap())
             };
 
-            Round {
-                player_1,
-                player_2,
-            }
+            Round { player_1, player_2 }
         };
 
         rounds.push(round);

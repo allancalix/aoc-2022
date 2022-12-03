@@ -1,12 +1,14 @@
-const INPUT: &'static str = include_str!("../data/a.txt");
+use std::io::prelude::*;
+use std::io::stdin;
 
-fn main() {
-    let mut lines = INPUT.lines();
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let mut input = String::new();
+    stdin().read_to_string(&mut input)?;
     let mut payloads = vec![];
-    let mut elf: Vec<&'static str> = vec![];
+    let mut elf: Vec<&str> = vec![];
 
-    while let Some(line) = lines.next() {
-        if line == "" {
+    for line in input.lines() {
+        if line.is_empty() {
             let total: u32 = elf.iter().map(|t| t.parse::<u32>().unwrap()).sum();
             payloads.push(total);
             elf.clear();
@@ -25,4 +27,6 @@ fn main() {
     payloads.sort();
     payloads.reverse();
     println!("Top 3 - {}", payloads.iter().take(3).sum::<u32>());
+
+    Ok(())
 }
