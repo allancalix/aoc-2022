@@ -16,7 +16,7 @@ impl TryFrom<&str> for Assignment {
     type Error = ();
 
     fn try_from(value: &str) -> Result<Assignment, ()> {
-        let mut split = value.split("-");
+        let mut split = value.split('-');
 
         Ok(Assignment(
             split.next().unwrap().parse::<u32>().unwrap(),
