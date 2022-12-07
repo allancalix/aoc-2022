@@ -36,6 +36,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-06"
+version = "0.1.0"
+
+[[package]]
 name = "memchr"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
