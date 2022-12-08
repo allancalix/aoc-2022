@@ -39,7 +39,13 @@ impl Directory {
             .sum()
     }
 
-    fn print(&self, level: usize, required_space: usize, sum: &mut usize, acc: &mut Vec<(usize, String)>) {
+    fn print(
+        &self,
+        level: usize,
+        required_space: usize,
+        sum: &mut usize,
+        acc: &mut Vec<(usize, String)>,
+    ) {
         let prefix = (0..level).map(|_| '\t').collect::<String>();
         println!("{}Dir Start - {} {}", prefix, self.name, self.size());
 
@@ -53,7 +59,7 @@ impl Directory {
                 Node::Directory(d) => {
                     dir_size += d.tree_size();
                     d.print(level + 1, required_space, sum, acc)
-                },
+                }
             }
         }
 
