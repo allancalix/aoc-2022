@@ -17,13 +17,13 @@ fn all_unique(input: &str) -> bool {
 }
 
 fn detect_marker(input: &str) -> usize {
-    let mut prev_chunk = input.chars().take(13).collect::<String>();
+    let mut prev_chunk = input.chars().take(3).collect::<String>();
 
-    for (i, c) in input.chars().skip(13).enumerate() {
+    for (i, c) in input.chars().skip(3).enumerate() {
         prev_chunk.push(c);
 
         if all_unique(prev_chunk.as_str()) {
-            return i + 14;
+            return i + 4;
         }
 
         prev_chunk.remove(0);
@@ -47,24 +47,12 @@ mod tests {
 
     #[test]
     fn finds_marker() {
-        assert_eq!(
-            detect_marker("bvwbjplbgvbhsrlpgdmjqwftvncz"),
-            5,
-        );
+        assert_eq!(detect_marker("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5,);
 
-        assert_eq!(
-            detect_marker("nppdvjthqldpwncqszvftbrmjlhg"),
-            6,
-        );
+        assert_eq!(detect_marker("nppdvjthqldpwncqszvftbrmjlhg"), 6,);
 
-        assert_eq!(
-            detect_marker("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"),
-            10,
-        );
+        assert_eq!(detect_marker("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10,);
 
-        assert_eq!(
-            detect_marker("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"),
-            11,
-        );
+        assert_eq!(detect_marker("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11,);
     }
 }
