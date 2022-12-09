@@ -15,7 +15,11 @@ fn visible_trees(grid: &Vec<Vec<u32>>) -> usize {
                 .collect::<Vec<u32>>();
 
             let up = column[0..i].iter().max().map(|m| m < tree).unwrap_or(true);
-            let down = column[i + 1..].iter().max().map(|m| m < tree).unwrap_or(true);
+            let down = column[i + 1..]
+                .iter()
+                .max()
+                .map(|m| m < tree)
+                .unwrap_or(true);
             let left = row[..j].iter().max().map(|m| m < tree).unwrap_or(true);
             let right = row[j + 1..].iter().max().map(|m| m < tree).unwrap_or(true);
 
