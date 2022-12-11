@@ -12,7 +12,7 @@ impl TryFrom<&str> for Command {
 
     fn try_from(cmd: &str) -> Result<Self, Self::Error> {
         let mut parts = cmd.split(" ");
-        
+
         match (parts.next(), parts.next()) {
             (Some("addx"), Some(val)) => {
                 let val = val.parse::<i32>().unwrap();
@@ -59,11 +59,15 @@ impl VM {
         };
 
         match cmd {
-            Command::Noop => {},
-            Command::Busy => {},
+            Command::Noop => {}
+            Command::Busy => {}
             Command::Add(x) => {
                 self.pending = Some(x);
-                println!("Cycle - {} {}", self.cycle, self.register * (self.cycle as i32));
+                println!(
+                    "Cycle - {} {}",
+                    self.cycle,
+                    self.register * (self.cycle as i32)
+                );
 
                 let x = (self.cycle - 1) % 40;
                 let y = (self.cycle - 1) / 40;
@@ -79,7 +83,11 @@ impl VM {
             }
         }
 
-        println!("Cycle - {} {}", self.cycle, self.register * (self.cycle as i32));
+        println!(
+            "Cycle - {} {}",
+            self.cycle,
+            self.register * (self.cycle as i32)
+        );
 
         let x = (self.cycle - 1) % 40;
         let y = (self.cycle - 1) / 40;
